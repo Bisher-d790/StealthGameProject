@@ -2,7 +2,6 @@
 
 #include "AIGuard.h"
 #include "Perception/PawnSensingComponent.h"
-#include "DrawDebugHelpers.h"
 #include "TimerManager.h"
 #include "FPSGameMode.h"
 #include "Engine/World.h"
@@ -80,8 +79,6 @@ void AAIGuard::OnPawnSeen(APawn* Pawn)
 		return;
 	}
 
-	DrawDebugSphere(GetWorld(), SeenPlayer->GetActorLocation(), 32.f, 12.f, FColor::Red, false, 10.f);
-
 	AFPSGameMode* gamemode = Cast<AFPSGameMode>(GetWorld()->GetAuthGameMode());
 	if (gamemode)
 	{
@@ -103,8 +100,6 @@ void AAIGuard::OnNoiseHeard(APawn* NoiseInstigator, const FVector& Location, flo
 	}
 
 	class AFPSCharacter* HeardPlayer = Cast<AFPSCharacter>(NoiseInstigator);
-
-	DrawDebugSphere(GetWorld(), Location, 32.f, 12.f, FColor::Green, false, 10.f);
 
 
 	FRotator newActorRotation = FRotationMatrix::MakeFromX(Location - GetActorLocation()).Rotator();
